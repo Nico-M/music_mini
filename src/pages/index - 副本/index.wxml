@@ -1,0 +1,135 @@
+<import src="../../components/capsule/index.wxml" />
+
+<view class="page">
+
+    <view class="">
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping"
+                    />
+                    <view class="weui-icon-clear" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" bindtap="handleSearch">
+                查询
+            </view>
+        </view>
+        <view class="weui-cells searchbar-result" wx:if="{{list.length > 0}}">
+            <text>{{}}</text>
+            <block wx:if="{{list.length < 6}}">
+                <block wx:for="{{list}}" wx:key="id">
+                    <navigator url="/pages/index/index?conid={{item.conid}}" open-type="redirectTo" class="weui-cell" hover-class="weui-cell_active"
+                        wx:if="{{item.conno!==null}}">
+                        <view class="weui-cell__bd">
+                            <view>{{item.conno}}</view>
+                        </view>
+                    </navigator>
+                </block>
+            </block>
+            <block wx:else>
+                <block wx:for="{{list}}" wx:key="id">
+                    <navigator url="/pages/index/index?conid={{item.conid}}" open-type="redirectTo" class="weui-cell" hover-class="weui-cell_active"
+                        wx:if="{{item.conno!==null}}">
+                        <view class="weui-cell__bd">
+                            <view>{{item.conno}}</view>
+                        </view>
+                    </navigator>
+                </block>
+                <view class="weui-panel__ft">
+                    <view class="weui-cell weui-cell_access weui-cell_link">
+                        <view class="weui-cell__bd">查看更多</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                    </view>
+                </view>
+
+            </block>
+
+
+
+        </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title" wx:if="{{ifShowDetail}}">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">合同号</view>
+            <view class="weui-cell__ft">{{detail.conno}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">资源上名称</view>
+            <view class="weui-cell__ft">{{detail.constatename}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">合同号</view>
+            <view class="weui-cell__ft">{{detail.custContactsName}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">合同号</view>
+            <view class="weui-cell__ft">{{detail.custName}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">合同号</view>
+            <view class="weui-cell__ft">{{detail.followUserName}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">合同号</view>
+            <view class="weui-cell__ft mx-list">{{detail.orgName}}</view>
+        </view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" hidden="{{ ifShowDetail }}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+    <view>
+
+            <button class="weui-btn" type="primary" disabled="true">页面主操作 Disabled</button>
+            <button class="weui-btn" type="primary">页面主操作 Normal</button>
+            <button class="weui-btn mini-btn" type="primary" size="mini">按钮</button>
+            <button class="weui-btn mini-btn" type="warn" size="mini">按钮</button>
+            
+    </view>
+    <view class="weui-cells__title">带说明的列表项</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">标题文字</view>
+            <view class="weui-cell__ft">说明文字</view>
+        </view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title">
+        
+            <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+                    <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+
+                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                </label>
+            </checkbox-group>
+            <view class="weui-cell weui-cell_link">
+                <view class="weui-cell__bd">添加更多</view>
+            </view>
+        </view>
+        <template is="capsule" data="{{ leftText: '1折', rightText: '限购一份', color: '#38f' }}" />
+        
+            <view class="zan-btns">
+                    <button class="zan-btn zan-btn--danger ">
+                            <navigator  url="/pages/detail/index" hover-class="navigator-hover">detail</navigator>
+                       </button>
+            </view>
+               
+                   
+        
+       
+        
+       
+        
+</view>
