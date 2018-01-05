@@ -6,7 +6,17 @@ const page = {
   data: {
     inputShowed: false,
     inputVal: "",
-    suggest:[]
+    suggest:[],
+    ifShowDetail:false
+  },
+  onLoad(options){
+    const {sw} = options;
+    if (sw) {
+      this.queryDetail(sw);
+      this.setData({
+        ifShowDetail:true
+      })
+    }
   },
   showInput: function () {
     this.setData({inputShowed: true});
@@ -31,7 +41,7 @@ const page = {
     const word = e.detail.value;
     // this.sugguest(word)
     this.setData({ inputVal: e.detail.value });
-    this.sugguest(word,this);
+    if(word) (this.sugguest(word,this));
     
   }
 }
