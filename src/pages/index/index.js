@@ -56,11 +56,19 @@ const mapFunc = (dispatch) => {
         }
       })
 
+    },
+    queryDetail(w){
+      return dispatch({
+        type:'index/queryDetail',
+        payload:{
+          word:w
+        }
+      })
     }
   }
 }
 
-const mapState = (index) => {
+const mapState = ({index}) => {
   return {
     ...index
   }
